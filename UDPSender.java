@@ -12,6 +12,7 @@ public class UDPSender {
             return;
         }
         DatagramSocket socket = null;
+        Scanner in = null;
         try {
             // Convert the arguments first, to ensure that they are valid
             InetAddress host = InetAddress.getByName(args[0]);
@@ -20,7 +21,7 @@ public class UDPSender {
             socket = new DatagramSocket();
 
             if (msg_count == 1) { // standard single message sending
-                Scanner in;
+                
                 in = new Scanner(System.in);
                 String message = null;
                 while (true) {
@@ -56,6 +57,10 @@ public class UDPSender {
         } finally {
             if (socket != null) {
                 socket.close();
+            }
+            if(in != null)
+            {
+                in.close();
             }
         }
     }
